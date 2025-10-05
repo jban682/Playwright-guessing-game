@@ -44,7 +44,10 @@ test.describe('Testing the guessing game behavior', () => {
   test('[TS888-003]: Verify Correct Guess on First Attempt (Win Condition)', async ({ page }) => {
     const correctNum = '12'
     await page.getByTestId('guessField').fill(correctNum)
-    await page.getByTestId('guessButton').click()
+    //await page.click('#guessButton')
+
+    page.locator('#guessButton:visible')
+   await page.locator('button:text("GUESS")').click()
 
     await expect.soft(page.locator('#card')).toContainClass('flipped')
     await expect(page.getByTestId('cardValue')).toHaveText(correctNum)
